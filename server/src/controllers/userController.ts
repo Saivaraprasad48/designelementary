@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import { tokenGenerator } from "utils/helpers/tokenGenerator";
+import { tokenGenerator } from "../utils/helpers/tokenGenerator";
 import getUserDataWithEmail from "../utils/helpers/emaildata";
-import userModel from "models/userModel";
+import userModel from "../models/userModel";
 
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;

@@ -12,14 +12,13 @@ const Navbar = () => {
     <Box bg="blue.500" px={10} py={4} color="white">
       <Flex justify="space-between" align="center">
         <Heading as="h1" size="lg">
-          GetUsers
+          <ChakraLink as={Link} to={"/"}>
+            REMIND ME!
+          </ChakraLink>
         </Heading>
         <HStack spacing={4}>
-          <ChakraLink as={Link} to="/" fontSize="xl">
-            Home
-          </ChakraLink>
-          <ChakraLink as={Link} to="/teams" fontSize="xl">
-            Teams
+          <ChakraLink as={Link} to="/remainder/add" fontSize="xl">
+            New Remainder
           </ChakraLink>
           <ChakraLink as={Link} to="/login" fontSize="xl">
             Login
