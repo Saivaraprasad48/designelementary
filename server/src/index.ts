@@ -13,7 +13,7 @@ const app: Application = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// connectToDb();
+connectToDb();
 RoutesHandler(app);
 
 app.listen(port, () => {

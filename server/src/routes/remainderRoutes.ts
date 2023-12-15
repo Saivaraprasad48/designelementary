@@ -1,9 +1,15 @@
+import {
+  createRemainder,
+  deleteRemainder,
+  getRemainder,
+  updateRemainder,
+} from "../controllers/remainderController";
 import { Router } from "express";
 const router = Router();
 
-router.get("/");
-router.post("/new");
-router.put("/update/:id");
-router.post("/delete/:id");
+router.get("/", getRemainder);
+router.post("/new", createRemainder);
+router.put("/update/:id", updateRemainder);
+router.post("/delete/:id", deleteRemainder);
 
 export default router;
