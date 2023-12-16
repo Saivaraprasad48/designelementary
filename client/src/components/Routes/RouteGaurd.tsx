@@ -17,7 +17,7 @@ const RouteGaurd = () => {
 
   useEffect(() => {
     if (!Cookies.get("authToken")) {
-      navigate("/user/login");
+      navigate("/login");
       showToast({
         status: "info",
         title: "You are not Authorized",
