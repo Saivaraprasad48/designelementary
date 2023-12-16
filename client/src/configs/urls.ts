@@ -1,4 +1,4 @@
-const hostname = "http://localhost:8080";
+const hostname = "https://designelement.onrender.com";
 
 export const endpoints = {
   getuser: `${hostname}/user/`,
