@@ -88,8 +88,10 @@ export const updateRemainder = async (req: Request, res: Response) => {
 
 export const deleteRemainder = async (req: Request, res: Response) => {
   const { id } = req.params;
+  console.log(id);
   try {
-    await remainderModel.findByIdAndDelete({ id });
+    console.log("herer");
+    await remainderModel.findByIdAndDelete(id);
     res.status(200).json({ message: "deleted successfully" });
   } catch (error) {
     console.log(error);
