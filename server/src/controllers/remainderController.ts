@@ -4,7 +4,6 @@ import remainderModel from "../models/remainderModel";
 export const getRemainder = async (req: Request, res: Response) => {
   try {
     const remainders = await remainderModel.find({});
-    console.log(remainders);
     res.status(200).json({ remainders });
   } catch (error) {
     console.log(error);

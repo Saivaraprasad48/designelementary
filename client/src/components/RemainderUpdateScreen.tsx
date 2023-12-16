@@ -13,20 +13,31 @@ import {
 import axios from "axios";
 import { endpoints } from "../configs/urls";
 import { RemainderType } from "../libs/types/remainder.types";
+import useCustomToast from "../hooks/useCustomToast";
+import { useNavigate } from "react-router-dom";
 
 const RemainderUpdateScreen: React.FC<RemainderType> = (remainder) => {
+  const showToast = useCustomToast();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({ ...remainder });
 
   const handleUpdate = async () => {
     try {
-      const updatedData = axios.put(
-        `${endpoints.updateRemainder}${formData._id}`,
-        formData
-      );
-      console.log(updatedData);
+      axios.put(`${endpoints.updateRemainder}${formData._id}`, formData);
+      showToast({
+        title: "Remainder updated",
+        status: "success",
+      });
+      navigate(`/`);
       console.log("updated successfully");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      showToast({
+        title: "unable to update Remainder",
+        description: `${error.message} error has occured.Try Again`,
+        status: "error",
+      });
     }
   };
 

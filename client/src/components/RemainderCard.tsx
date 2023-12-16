@@ -11,15 +11,35 @@ import {
 } from "@chakra-ui/react";
 import { RemainderType } from "../libs/types/remainder.types";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { endpoints } from "../configs/urls";
+import useCustomToast from "../hooks/useCustomToast";
 
 const RemainderCard: React.FC<RemainderType> = ({
   date,
   subject,
   category,
   _id,
+  status,
 }) => {
-  const handleMarkCompleted = () => {
-    
+  const showToast = useCustomToast();
+
+  const handleMarkCompleted = async () => {
+    try {
+      await axios.put(`${endpoints.completeRemainder}${_id}`);
+      showToast({
+        title: "Remainder Marked as Completed",
+        status: "success",
+      });
+      window.location.reload();
+    } catch (error: any) {
+      console.log(error);
+      showToast({
+        title: "unable to complete Remainder",
+        description: `${error.message} error has occured.Try Again`,
+        status: "error",
+      });
+    }
   };
 
   return (
@@ -45,14 +65,17 @@ const RemainderCard: React.FC<RemainderType> = ({
         <Button colorScheme="teal" size="sm">
           <Link to={`/remainder/${_id}`}>View</Link>
         </Button>
-        <Button
-          colorScheme="green"
-          size="sm"
-          ml={2}
-          onClick={handleMarkCompleted}
-        >
-          Mark as Completed
-        </Button>
+
+        {status === "pending" && (
+          <Button
+            colorScheme="green"
+            size="sm"
+            ml={2}
+            onClick={handleMarkCompleted}
+          >
+            Mark as Completed
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
