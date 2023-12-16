@@ -8,7 +8,9 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { Container } from "@chakra-ui/react";
+import axios from "axios";
 import { useState } from "react";
+import { endpoints } from "../configs/urls";
 
 const NewRemainderScreen = () => {
   const [formData, setFormData] = useState({
@@ -22,6 +24,7 @@ const NewRemainderScreen = () => {
   });
 
   const handleSubmit = () => {
+    const data = axios.post(endpoints.createRemainder,{})
     // Add your logic for handling form submission here
     console.log("Form data submitted:", formData);
   };

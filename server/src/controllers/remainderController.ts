@@ -13,29 +13,59 @@ export const getRemainder = async (req: Request, res: Response) => {
 };
 
 export const createRemainder = async (req: Request, res: Response) => {
+  const { date, subject, description, email, contact_number, sms, recurring } =
+    req.body;
   try {
-    const newRemainder = remainderModel.create({});
+    const newRemainder = await remainderModel.create({
+      date,
+      subject,
+      description,
+      email,
+      contact_number,
+      sms,
+      recurring,
+    });
+
     res
       .status(201)
-      .json({ message: "new remainder created", data: newRemainder });
+      .json({ message: "New reminder created", data: newRemainder });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ messsage: error.messsage });
+    console.error(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const updateRemainder = async (req: Request, res: Response) => {
   const { id } = req.params;
+  const { date, subject, description, email, contact_number, sms, recurring } =
+    req.body;
+
   try {
-    const updatedRemainder = await remainderModel.findByIdAndUpdate({});
-    console.log(updatedRemainder);
+    const updatedRemainder = await remainderModel.findByIdAndUpdate(
+      id,
+      {
+        date,
+        subject,
+        description,
+        email,
+        contact_number,
+        sms,
+        recurring,
+      },
+      { new: true }
+    );
+
+    if (!updatedRemainder) {
+      return res.status(404).json({ message: "Reminder not found" });
+    }
+
     res.status(200).json({
-      message: "Remainder updated sucessfully",
+      message: "Reminder updated successfully",
       data: updatedRemainder,
     });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ messsage: error.messsage });
+    console.error(error);
+    res.status(500).json({ message: error.message });
   }
 };
 
