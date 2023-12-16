@@ -3,6 +3,7 @@ const schema = mongoose.Schema;
 
 const recurringDays = [2, 3, 5, 7];
 const categories = ["work", "personal", "home"];
+const statusValues = ["completed", "pending"];
 
 const remainderSchema = new schema(
   {
@@ -22,6 +23,11 @@ const remainderSchema = new schema(
     description: {
       type: String,
       require: true,
+    },
+    status: {
+      type: String,
+      enum: statusValues,
+      default: "pending",
     },
     email: {
       type: String,

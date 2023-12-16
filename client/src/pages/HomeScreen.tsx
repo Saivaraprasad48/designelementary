@@ -18,6 +18,7 @@ const HomeScreen = () => {
       try {
         const Remainders = await axios.get(endpoints.getReaminders);
         const remainders = Remainders.data.remainders;
+        console.log(remainders);
         dispatch(updateRemainders({ remainders, error: false }));
       } catch (error) {
         console.log("error occured:", error);

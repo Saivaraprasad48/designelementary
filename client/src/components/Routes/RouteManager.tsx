@@ -4,7 +4,7 @@ import NewRemainderScreen from "../../pages/NewRemainderScreen";
 import NotFoundScreen from "../../pages/NotFoundScreen";
 import LoginScreen from "../../pages/LoginScreen";
 import SignupScreen from "../../pages/SignupScreen";
-import RemainderViewScreen from "../../pages/RemainderViewScreen";
+import RemainderViewScreen from "../../pages/RemainderDetailsScreen";
 import RouteGaurd from "./RouteGaurd";
 
 const RouteManager = () => {

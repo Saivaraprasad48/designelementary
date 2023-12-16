@@ -2,6 +2,7 @@ export interface RemainderType {
   date: string;
   category: string;
   subject: string;
+  status: string;
   description: string;
   email: string;
   recurring: number;

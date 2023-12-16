@@ -97,3 +97,23 @@ export const deleteRemainder = async (req: Request, res: Response) => {
     res.status(500).json({ messsage: error.messsage });
   }
 };
+
+export const updateRemainderStatus = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  try {
+    const completedRemainder = await remainderModel.findByIdAndUpdate(
+      id,
+      {
+        status: "completed",
+      },
+      { new: true }
+    );
+    res.status(200).json({
+      remainder: completedRemainder,
+      message: "Thank you completing the task",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error occured while updating task" });
+  }
+};
