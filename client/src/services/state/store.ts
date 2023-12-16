@@ -1,17 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./slices/remainders.slice";
 
-import { CounterStateType } from "./slices/remainders.slice";
+import remainderReducer from "./slices/remainders.slice";
+import userReducer from "./slices/user.slice";
+
+import { RemainderSliceStateType } from "../../libs/types/remainder.types";
+import { userSliceStateType } from "../../libs/types/user.types";
 
 export const store = configureStore({
   reducer: {
-    counterReducer,
+    remainderReducer,
+    userReducer,
   },
 });
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+
 export type AppDispatch = typeof store.dispatch;
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = {
-  counterReducer: CounterStateType;
+  remainderReducer: RemainderSliceStateType;
+  userReducer: userSliceStateType;
 };

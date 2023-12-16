@@ -65,3 +65,11 @@ export const userSignup = async (req: Request, res: Response) => {
     res.status(400).json({ message: "unable to create new Account" });
   }
 };
+
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    res.status(200).json({ user: req.userData });
+  } catch (error) {
+    res.status(500).json({ message: "unable to get user. Try to Login" });
+  }
+};

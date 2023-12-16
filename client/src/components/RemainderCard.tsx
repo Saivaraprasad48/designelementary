@@ -1,18 +1,27 @@
-import { Box, Text, Badge, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Text,
+  Badge,
+  Button,
+  Divider,
+  Flex,
+  Heading,
+} from "@chakra-ui/react";
+import { RemainderType } from "../libs/types/remainder.types";
 
-interface RemainderCardProps {
-  date: string;
-  subject: string;
-  email: string;
-  contactNumber: string;
-}
-
-const RemainderCard: React.FC<RemainderCardProps> = ({
+const RemainderCard: React.FC<RemainderType> = ({
   date,
   subject,
   email,
-  contactNumber,
+  contact_number,
+  _id,
+  description,
+  recurring,
+  sms,
 }) => {
+  const handleView = () => {};
+  const handleMarkCompleted = () => {};
+
   return (
     <Box
       maxW="sm"
@@ -22,32 +31,68 @@ const RemainderCard: React.FC<RemainderCardProps> = ({
       boxShadow="md"
       p={4}
     >
-      {/* Date */}
-      <Text fontSize="lg" fontWeight="bold" mb={2}>
-        Date: {date}
+      <Flex justify="space-between" align="center" mb={2}>
+        <Badge colorScheme="teal">{subject}</Badge>
+        <Text fontSize="sm" color="gray.500">
+          ID: {_id}
+        </Text>
+      </Flex>
+
+      <Heading as="h2" fontSize="xl" mb={2}>
+        {description}
+      </Heading>
+
+      <Text fontSize="sm" mb={2}>
+        Date: {new Date(date).toLocaleDateString()}
       </Text>
 
-      {/* Subject */}
-      <Text fontSize="md" mb={2}>
-        Subject: {subject}
-      </Text>
+      <Divider my={2} />
 
-      {/* Email */}
-      <Text fontSize="md" mb={2}>
-        Email: {email}
-      </Text>
+      <Flex justify="space-between">
+        <Box>
+          <Text fontSize="sm" fontWeight="bold" mb={1}>
+            Contact Number
+          </Text>
+          <Text fontSize="sm">{contact_number}</Text>
+        </Box>
 
-      {/* Contact Number */}
-      <Text fontSize="md" mb={2}>
-        Contact Number: {contactNumber}
-      </Text>
+        <Box>
+          <Text fontSize="sm" fontWeight="bold" mb={1}>
+            Email
+          </Text>
+          <Text fontSize="sm">{email}</Text>
+        </Box>
 
-      {/* Additional information or actions can be added here */}
+        <Box>
+          <Text fontSize="sm" fontWeight="bold" mb={1}>
+            SMS
+          </Text>
+          <Text fontSize="sm">{sms}</Text>
+        </Box>
 
-      {/* Example: Displaying a badge */}
-      <VStack spacing={2}>
-        <Badge colorScheme="teal">Reminder</Badge>
-      </VStack>
+        <Box>
+          <Text fontSize="sm" fontWeight="bold" mb={1}>
+            Recurring
+          </Text>
+          <Text fontSize="sm">{recurring} days</Text>
+        </Box>
+      </Flex>
+
+      <Divider my={2} />
+
+      <Flex justifyContent={"space-between"}>
+        <Button colorScheme="teal" size="sm" onClick={handleView}>
+          View
+        </Button>
+        <Button
+          colorScheme="green"
+          size="sm"
+          ml={2}
+          onClick={handleMarkCompleted}
+        >
+          Mark as Completed
+        </Button>
+      </Flex>
     </Box>
   );
 };

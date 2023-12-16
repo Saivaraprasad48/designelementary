@@ -1,6 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import express from "express";
-import { getUserDataWithEmail } from "../utils/helpers/emailData";
+import getUserDataWithEmail from "../utils/helpers/emaildata";
 
 interface UserData {
   id: string;
@@ -16,7 +16,7 @@ declare global {
   }
 }
 
-const authmiddleware = async (
+export const authmiddleware = async (
   req: express.Request,
   res: express.Response,
   next: () => void
@@ -41,5 +41,3 @@ const authmiddleware = async (
     res.status(401).send("please try to login");
   }
 };
-
-export { authmiddleware };

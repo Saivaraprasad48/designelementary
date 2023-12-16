@@ -13,12 +13,21 @@ export const getRemainder = async (req: Request, res: Response) => {
 };
 
 export const createRemainder = async (req: Request, res: Response) => {
-  const { date, subject, description, email, contact_number, sms, recurring } =
-    req.body;
+  const {
+    date,
+    category,
+    subject,
+    description,
+    email,
+    contact_number,
+    sms,
+    recurring,
+  } = req.body;
   try {
     const newRemainder = await remainderModel.create({
       date,
       subject,
+      category,
       description,
       email,
       contact_number,
@@ -37,8 +46,16 @@ export const createRemainder = async (req: Request, res: Response) => {
 
 export const updateRemainder = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { date, subject, description, email, contact_number, sms, recurring } =
-    req.body;
+  const {
+    date,
+    category,
+    subject,
+    description,
+    email,
+    contact_number,
+    sms,
+    recurring,
+  } = req.body;
 
   try {
     const updatedRemainder = await remainderModel.findByIdAndUpdate(
@@ -46,6 +63,7 @@ export const updateRemainder = async (req: Request, res: Response) => {
       {
         date,
         subject,
+        category,
         description,
         email,
         contact_number,

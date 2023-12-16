@@ -1,6 +1,7 @@
 const hostname = "http://localhost:8080";
 
 export const endpoints = {
+  getuser: `${hostname}/user/`,
   login: `${hostname}/user/login`,
   signup: `${hostname}/user/signup`,
   getReaminders: `${hostname}/remainder/`,

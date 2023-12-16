@@ -15,18 +15,20 @@ import { endpoints } from "../configs/urls";
 const NewRemainderScreen = () => {
   const [formData, setFormData] = useState({
     date: "",
+    category: "",
     subject: "",
-    message: "",
+    description: "",
     email: "",
-    contactNumber: "",
+    contact_number: "",
     sms: "",
-    selectElement: "",
+    recurring: "",
   });
 
-  const handleSubmit = () => {
-    const data = axios.post(endpoints.createRemainder,{})
-    // Add your logic for handling form submission here
-    console.log("Form data submitted:", formData);
+  console.log(formData);
+
+  const handleSubmit = async () => {
+    const newRemainder = await axios.post(endpoints.createRemainder, formData);
+    console.log(newRemainder.data);
   };
 
   return (
@@ -42,41 +44,48 @@ const NewRemainderScreen = () => {
       <Box>
         <FormLabel>Reccuring Days</FormLabel>
         <Select
-          value={formData.selectElement}
+          value={formData.recurring}
           onChange={(e) =>
-            setFormData({ ...formData, selectElement: e.target.value })
+            setFormData({ ...formData, recurring: e.target.value })
           }
         >
           <option value={2}>2 Days</option>
           <option value={3}>3 Days</option>
           <option value={5}>5 Days</option>
           <option value={7}>7 Days</option>
-
-          {/* Add more options as needed */}
         </Select>
       </Box>
-      {/* one section */}
+
+      <Box>
+        <FormLabel>Category</FormLabel>
+        <Select
+          value={formData.category}
+          onChange={(e) =>
+            setFormData({ ...formData, category: e.target.value })
+          }
+        >
+          <option value="home">Home</option>
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+        </Select>
+      </Box>
 
       <Box>
         <FormLabel>Subject</FormLabel>
-        <Select
+        <Textarea
           value={formData.subject}
           onChange={(e) =>
             setFormData({ ...formData, subject: e.target.value })
           }
-        >
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          {/* Add more options as needed */}
-        </Select>
+        />
       </Box>
 
       <Box>
-        <FormLabel>Message</FormLabel>
+        <FormLabel>Description</FormLabel>
         <Textarea
-          value={formData.message}
+          value={formData.description}
           onChange={(e) =>
-            setFormData({ ...formData, message: e.target.value })
+            setFormData({ ...formData, description: e.target.value })
           }
         />
       </Box>
@@ -92,9 +101,9 @@ const NewRemainderScreen = () => {
         <FormLabel>Contact Number</FormLabel>
         <Input
           type="tel"
-          value={formData.contactNumber}
+          value={formData.contact_number}
           onChange={(e) =>
-            setFormData({ ...formData, contactNumber: e.target.value })
+            setFormData({ ...formData, contact_number: e.target.value })
           }
         />
       </Box>
@@ -105,7 +114,7 @@ const NewRemainderScreen = () => {
           onChange={(e) => setFormData({ ...formData, sms: e.target.value })}
         />
       </Box>
-      {/* Submit Button */}
+
       <Button colorScheme="teal" onClick={handleSubmit}>
         Submit
       </Button>
