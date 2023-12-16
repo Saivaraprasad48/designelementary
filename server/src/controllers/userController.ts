@@ -6,6 +6,7 @@ import userModel from "../models/userModel";
 
 export const userLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+  console.log(req.body);
   try {
     const EmailUsersData = await getUserDataWithEmail(email);
     if (!EmailUsersData)

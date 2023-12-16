@@ -36,7 +36,7 @@ const remainderSchema = new schema(
       require: true,
     },
     recurring: {
-      type: String,
+      type: Number,
       enum: recurringDays,
       require: true,
     },
