@@ -4,6 +4,9 @@ This is a full-stack application with a monorepo structure. It consists of a Rea
 
 #### Test Credentials:
 
+![image](https://github.com/Dhanasaitholeti/designelementary/assets/86939592/5385f84c-c702-4bf9-a8a9-0be9c015d032)
+
+
 - username: example@gmail.com
 - password: 123456
 
@@ -16,7 +19,7 @@ This is a full-stack application with a monorepo structure. It consists of a Rea
 ### Clone the repository:
 
 ```bash
- git clone https://github.com/Dhanasaitholeti/PetConnect.git
+https://github.com/Dhanasaitholeti/designelementary.git
 ```
 
 ### Manual Installation
