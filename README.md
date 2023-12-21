@@ -1,4 +1,4 @@
-# PetConnect
+# RemindME :)
 
 This is a full-stack application with a monorepo structure. It consists of a ReactJS frontend using Redux for state management and a Node.js backend with Express.
 
@@ -10,6 +10,7 @@ This is a full-stack application with a monorepo structure. It consists of a Rea
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/) installed
+
 
 ## Getting Started
 
